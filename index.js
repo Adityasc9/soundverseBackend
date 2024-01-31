@@ -51,10 +51,13 @@ app.get("/api/prompts", async (req, res) => {
 });
 
 
+const thirtyDaysAgo = new Date();
+thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
 app.get("/api/userA", async (req, res) => {
   try {
     const items = await UserActivities.find(
-      {},
+      { createdAt: { $gte: thirtyDaysAgo } },
       "userId activity createdAt"
     ).sort({ createdAt: 1 });
     res.json(items);
