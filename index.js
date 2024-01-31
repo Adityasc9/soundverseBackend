@@ -52,7 +52,7 @@ app.get("/api/prompts", async (req, res) => {
 
 
 const thirtyDaysAgo = new Date();
-thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 5);
 
 app.get("/api/userA", async (req, res) => {
   try {
