@@ -1,17 +1,5 @@
 const mongoose = require("mongoose");
 
-const stripeCheckoutSessionSchema = new Schema(
-  {
-    id: String, // Unique identifier for the session
-    amount_total: Number, // Total amount charged
-    currency: String, // Currency of the charge
-    customer: String, // Customer ID
-    payment_status: String, // Status of the payment
-    // You can still access other fields not defined here when querying the documents
-  },
-  { _id: false, strict: false }
-); 
-
 const userSchema = new mongoose.Schema({
   _id: { type: mongoose.Schema.Types.ObjectId },
   name: { type: String },
@@ -25,7 +13,13 @@ const userSchema = new mongoose.Schema({
   inviteCodeId: { type: mongoose.Schema.Types.ObjectId },
   tokens: { type: Number },
   role: { type: String },
-  stripeCheckoutSession: stripeCheckoutSessionSchema,
+  stripeCheckoutSession: {
+    id: { type: String },
+    amount_total: { type: Number },
+    currency: { type: String },
+    customer: { type: String },
+    payment_status: { type: String },
+  },
   desc: {
     identity: { type: String },
     proficiency: { type: String },
